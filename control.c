@@ -64,7 +64,7 @@ cont_cb(Widget widget, XtPointer client_data, XtPointer call_data)
   void measure(Widget);
 
   int item_no = (int) client_data;
-  
+
   switch(item_no){
   case 0:
     make_frame_dlg(main_w);
@@ -79,7 +79,7 @@ cont_cb(Widget widget, XtPointer client_data, XtPointer call_data)
     make_pers_dlg(main_w);
     break;
   }
-  
+
 }
 
 
@@ -98,7 +98,7 @@ measure(Widget parent)
   Widget sep,select_atom_label_w,select_atom_w,sel_reset_w;
 
   XmString label=XmStringCreateLocalized("Measure");
-  
+
   if(!meas_dialog){
     XtSetArg (args[n],XmNdialogTitle, label); n++;
     XtSetArg (args[n],XmNautoUnmanage, False); n++;
@@ -114,7 +114,7 @@ measure(Widget parent)
        XmNorientation, XmVERTICAL,
        NULL);
 
-    meas_frame[0] = XtVaCreateManagedWidget 
+    meas_frame[0] = XtVaCreateManagedWidget
       ("frame1",
        xmFrameWidgetClass, meas_rc[0],
        XmNshadowType,      XmSHADOW_IN,
@@ -138,9 +138,9 @@ measure(Widget parent)
     }
 
     w=0;
-    
+
     for(i=0;i<4;i++){
-      
+
       meas_label_w[w] = XtVaCreateManagedWidget
         ("dim",
          xmLabelWidgetClass,meas_rc[1],
@@ -149,19 +149,19 @@ measure(Widget parent)
       w++;
     }
 
-    
+
     meas_rc[2] = XtVaCreateManagedWidget
       ("lengths",
        xmRowColumnWidgetClass,meas_rc[0],
        XmNorientation, XmHORIZONTAL,
        NULL);
 
-    meas_frame[1] = XtVaCreateManagedWidget 
+    meas_frame[1] = XtVaCreateManagedWidget
       ("frame1",
        xmFrameWidgetClass, meas_rc[2],
        XmNshadowType,      XmSHADOW_IN,
        NULL);
-    
+
     meas_rc[3] = XtVaCreateManagedWidget
       ("lengths",
        xmRowColumnWidgetClass,meas_frame[1],
@@ -192,12 +192,12 @@ measure(Widget parent)
        XmNorientation, XmVERTICAL,
        NULL);
 
-    meas_frame[2] = XtVaCreateManagedWidget 
+    meas_frame[2] = XtVaCreateManagedWidget
       ("frame1",
        xmFrameWidgetClass, meas_rc[4],
        XmNshadowType,      XmSHADOW_IN,
        NULL);
-    
+
     meas_rc[5] = XtVaCreateManagedWidget
       ("lengths",
        xmRowColumnWidgetClass,meas_frame[2] ,
@@ -209,7 +209,7 @@ measure(Widget parent)
        xmLabelWidgetClass,meas_rc[5],
        XmNalignment, XmALIGNMENT_BEGINNING,
        NULL);
-    
+
     for(i=0;i<2;i++){
       for(j=i+1;j<3;j++){
         for(k=j+1;k<4;k++){
@@ -223,8 +223,8 @@ measure(Widget parent)
         }
       }
     }
-    
-    meas_frame[3] = XtVaCreateManagedWidget 
+
+    meas_frame[3] = XtVaCreateManagedWidget
       ("frame1",
        xmFrameWidgetClass, meas_rc[4],
        XmNshadowType,      XmSHADOW_IN,
@@ -247,9 +247,9 @@ measure(Widget parent)
        xmLabelWidgetClass,meas_rc[5],
        XmNlabelString, label,
        NULL);
-    
+
     XmStringFree(label);
-    
+
     sep=XmCreateSeparator(meas_rc[0],"sep",NULL,0);
     XtManageChild(sep);
 
@@ -258,7 +258,7 @@ measure(Widget parent)
        xmLabelWidgetClass,meas_rc[0],
        XmNalignment, XmALIGNMENT_BEGINNING,
        NULL);
-    
+
     select_atom_w=XtVaCreateManagedWidget
       ("select",xmTextFieldWidgetClass,meas_rc[0], NULL);
 
@@ -266,14 +266,14 @@ measure(Widget parent)
 
     sep=XmCreateSeparator(meas_rc[0],"sep",NULL,0);
     XtManageChild(sep);
-    
+
     sel_reset_w=XtVaCreateManagedWidget
       ("Unselect all atoms",xmPushButtonWidgetClass,meas_rc[0],NULL);
 
     XtAddCallback(sel_reset_w,XmNactivateCallback,sel_reset_cb,NULL);
 
     /* If the user selects cancel, just destroy the meas_dialog */
-    XtAddCallback((Widget)meas_dialog, XmNcancelCallback, 
+    XtAddCallback((Widget)meas_dialog, XmNcancelCallback,
                    meas_dlg_cancel_cb, NULL);
 
     /*    XtUnmanageChild
@@ -282,7 +282,7 @@ measure(Widget parent)
       /* No help available ... */
 
       XtUnmanageChild
-        (XmMessageBoxGetChild(meas_dialog,XmDIALOG_HELP_BUTTON));    
+        (XmMessageBoxGetChild(meas_dialog,XmDIALOG_HELP_BUTTON));
 
       update_lengths_dialog(True);
   }
@@ -316,7 +316,7 @@ get_length(int l, int m)
   z = atoms[l].z - atoms[m].z;
 
   distance = sqrt ((x * x) + (y * y) + (z * z));
-  
+
   return (distance);
 
 }
@@ -350,7 +350,7 @@ get_angle(int l, int m, int n)
   angle=acos(angle)*deg_to_rad;
 
   return(angle);
-  
+
 }
 
 
@@ -363,9 +363,9 @@ get_torsion(int l, int m, int n, int o)
   void vector_product(double *, double *, double *);
 
   double lm[3], mn[3], no[3], p[3], q[3], temp[3], torsion;
-    
+
   /* work out torsion angle:
-     
+
      there are four atoms (l,m,n,o). Two planes are defined - the
      first contains atoms l, m and n and the second contains atoms m,
      n and o. The angle between these two planes (actually plane
@@ -402,7 +402,7 @@ get_torsion(int l, int m, int n, int o)
   /* The plane normal of (l,m,n) */
 
   vector_product(p, lm, mn); /* p = lm x mn */
-    
+
   normalize_vec(p);
 
   /* The plane normal of (m,n,o) */
@@ -426,7 +426,7 @@ get_torsion(int l, int m, int n, int o)
     {
       torsion = acos(torsion) * deg_to_rad;
     }
-  
+
   /* Now determine the sign - determined from mn . (p x q) */
 
   vector_product(temp, p, q);   /* temp = p x q */
@@ -435,9 +435,9 @@ get_torsion(int l, int m, int n, int o)
     {
       torsion *= -1.0;          /* Negate */
     }
-  
+
   return(torsion);
-  
+
 }
 
 
@@ -450,7 +450,7 @@ make_pers_dlg(Widget parent)
   void perspective_type_cb (Widget, XtPointer, XtPointer);
   void reset_pers_scales(void);
   void v_scale_cb(Widget, XtPointer, XtPointer);
-  
+
   int n=0;
 
   Widget depth_on, rc1, radio, button;
@@ -458,19 +458,19 @@ make_pers_dlg(Widget parent)
   XmString title;
 
   if(!pers_dialog){
-    
+
     title=XmStringCreateLocalized("Perspective");
     n=0;
     XtSetArg (args[n],XmNdialogTitle,title); n++;
     XtSetArg (args[n],XmNwidth,300); n++;
 
     pers_dialog=XmCreateMessageDialog(parent,"v_scale",args,n);
-    
+
     rc1=XtVaCreateManagedWidget
       ("rc1",xmRowColumnWidgetClass,pers_dialog,NULL);
-    
+
     title=XmStringCreateLocalized("Alter scale");
-    
+
     v_scale = XtVaCreateManagedWidget
       ("v_scale", xmScaleWidgetClass,
        rc1,
@@ -481,12 +481,12 @@ make_pers_dlg(Widget parent)
        XmNorientation, XmHORIZONTAL,
        XmNtitleString, title,
        NULL);
-    
+
     XtAddCallback(v_scale, XmNdragCallback, v_scale_cb, NULL);
     XtAddCallback(v_scale, XmNvalueChangedCallback, v_scale_cb, NULL);
-    
+
     title=XmStringCreateLocalized("Choose depth");
-    
+
     d_scale = XtVaCreateManagedWidget
       ("d_scale", xmScaleWidgetClass,
        rc1,
@@ -567,7 +567,7 @@ make_pers_dlg(Widget parent)
         (XmMessageBoxGetChild(pers_dialog,XmDIALOG_HELP_BUTTON));
 
   }
-  
+
   XtAddCallback (pers_dialog, XmNmapCallback, place_dialog_cb, NULL);
   XtManageChild(pers_dialog);
 
@@ -589,7 +589,7 @@ pers_dlg_cancel_cb(Widget widget, XtPointer client_data, XtPointer call_data)
 void
 v_scale_cb(Widget widget, XtPointer client_data, XtPointer call_data)
 {
-  
+
   void canvas_cb(Widget, XtPointer, XtPointer);
   struct frame * get_selected_frame (void);
   void set_canvas_scale (double);
@@ -597,7 +597,7 @@ v_scale_cb(Widget widget, XtPointer client_data, XtPointer call_data)
 
   double scale;
 
-  struct frame *this_frame;  
+  struct frame *this_frame;
 
   XmScaleCallbackStruct *cbs=
     (XmScaleCallbackStruct *)call_data;
@@ -625,12 +625,12 @@ v_scale_cb(Widget widget, XtPointer client_data, XtPointer call_data)
      between 0 and 1023 */
 
   scale = pow (2.0, cb_value / 100.0) - 1;
-  
+
   set_canvas_scale (scale);
-  
+
   redraw = 1;
   canvas_cb (canvas, NULL, NULL);
-  
+
 }
 
 
@@ -662,14 +662,14 @@ d_scale_cb (Widget widget,
   struct frame * get_selected_frame (void);
   void set_depth_all_frames (int);
   void set_z_depth (double);
-  
-  struct frame *this_frame;  
+
+  struct frame *this_frame;
 
   XmScaleCallbackStruct *cbs=
     (XmScaleCallbackStruct *)call_data;
-  
+
   int cb_value;
-  
+
   cb_value = cbs->value;
   depth = cb_value;
 
@@ -692,7 +692,7 @@ d_scale_cb (Widget widget,
 
   redraw = 1;
   canvas_cb (canvas, NULL, NULL);
-  
+
 }
 
 
@@ -770,7 +770,7 @@ select_atom_cb(Widget widget, XtPointer client_data, XtPointer call_data)
     sprintf(string,"Atom %d selected",selected_atom+1);
     echo_to_message_area(string);
   }
-     
+
 }
 
 
@@ -796,32 +796,32 @@ sel_reset_cb(Widget widget, XtPointer client_data, XtPointer call_data)
   canvas_cb(canvas, NULL, NULL);
 
   update_lengths_dialog(True);
-  
+
 }
 
 
 void
 reset_pers_scales(void)
 {
-  
+
   double get_z_depth(void);
   double get_canvas_scale(void);
   int xm_nint (double);
-  
+
   int v_scale_int, local_z_depth;
-  
+
   v_scale_int = xm_nint (100.0 * log (get_canvas_scale() + 1) / log(2.0));
-  
+
   if(d_scale != NULL)
     {
 
       local_z_depth = (int) get_z_depth();
-      
+
       XtVaSetValues(d_scale,
                     XmNvalue, local_z_depth,
                     NULL);
     }
-  
+
 
   if(v_scale != NULL)
     {
