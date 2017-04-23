@@ -1,0 +1,69 @@
+-*- outline -*-
+
+* New in XMakemol 5.16
+
+** GL2PS updated to version 1.3.2.
+
+** Export SVG files.
+
+** Fix build problem.
+
+* New in XMakemol 5.15
+
+** GL2PS updated to version 1.2.3.
+
+** Try to place dialogs such that they don't obscure the main window.
+
+* New in XMakemol 5.14
+
+** Exporting XPM files.
+Fixed problem with absolute filenames (CVE Reference: CAN-2004-0914).
+
+** Stereo pair rendering.
+In addition to the red/blue stereo rendering, eyes-crossed stereo pair
+rendering for OpenGL mode is now available.
+
+** GL2PS updated to version 1.2.1.
+
+* New in XMakemol 5.13
+
+** Customizable bounding box.
+Bounding box parameters can now be specified in input files using the
+BBOX_XYZ keyword to give the minimum and maximum bounding box
+coordinates.
+
+** Allow system to be split into molecules.
+The start of a new molecule is signified by the keyword MOLECULE on
+any atom's input line. Bond and H-bond factors are now split into
+independent intermolecular and intramolecular values.
+
+* New in XMakemol 5.12
+
+** Added dialog for scaling coordinates.
+
+* New in XMakemol 5.11
+
+** GL2PS updated to version 1.1.2.
+
+** Increased maximum atom size; allows space-filling like rendering.
+
+* New in XMakemol 5.10
+
+** Render different groups of atoms with different rendering modes.
+
+** GL2PS updated to version 1.0.0.
+Allows export of OpenGL scenes to EPS and PDF formats.
+
+** Atom numbers and symbols rendered in OpenGL mode (using GLUT).
+
+* New in XMakemol 5.09
+
+** Updated documentation URL and bug report address.
+
+* New in XMakemol 5.08
+
+** Default rendering mode is now OpenGL without lighting.
+This is true when OpenGL support has been built in. non-OpenGL
+rendering can be selected from the command line using the -G option.
+
+** Vectors and H-bonds are enabled by default.

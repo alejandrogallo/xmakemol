@@ -1,0 +1,33 @@
+-*- outline -*-
+
+* XMakemol Problems
+
+This file contains descriptions and solutions to known problems.
+
+** Parsing XYZ files
+
+If XMakemol has problems parsing XYZ files, then it may be because of
+the setting of the LANG environment variable. Assuming you are using a
+bash-like shell, try launching the program with:
+
+    $ LANG=en_GB xmakemol
+
+** Saving XPM files
+
+With OpenGL rendering you might get unexpected results, like seeing
+cutouts in your XPM image where any windows overlapped the main
+drawing area.  A workaround for this problem, if you are using
+XFree86, is to enable a backing store in your /etc/X11/XF86Config-4:
+
+    Section "Device"
+
+            [...]
+
+            Option              "BackingStore"
+    EndSection
+
+If this is successful, then in your /var/log/XFree86.0.log file you
+should see lines like:
+
+    (**) TRIDENT(0): Option "BackingStore"
+    (**) TRIDENT(0): Backing store enabled
